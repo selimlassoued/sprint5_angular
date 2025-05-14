@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <table class="table table-striped">
+    <tr>
+        <th>Indice</th>
+        <th>Id</th>
+        <th>Marque</th> 
+        <th>Modèle</th>
+        <th>Prix</th>
+        <th>Diamètre</th>
+        <th>Date de fabrication</th>
+        <th>Mouvement</th>
+        <th>Client</th>
+        @if(authServ.isAdmin()){
+            <th>Supprimer</th>
+            <th>Modifier</th>
+        }
+    </tr>
+    @for (watch of watches; track watch.idMontre;let indice=$index;let nbr=$count)
+    {
+    <tbody >
+        <tr >
+            <td>{{indice}}</td>
+            <td>{{watch.idMontre}}</td>
+            <td>{{watch.marque}}</td>
+            <td>{{watch.modele}}</td>
+            <td>{{watch.prix}}</td>
+            <td>{{watch.diametre}}</td>
+            <td>{{watch.datefabrication | date:'dd/MM/yyyy'}}</td>
+            <td>{{watch.mouvement}}</td>
+            @if(watch.client){
+            <td>{{watch.client.nomCli}}</td>
+            }
+            @else {
+                <td>PAS DE CLIENT</td>
+            }
+            @if(authServ.isAdmin()){
+                <td><a class="btn btn-danger" (click)="supprimerMontre(watch)">Supprimer</a></td>
+                <td><a class="btn btn-success" [routerLink]="['/update-watch',watch.idMontre]">Modifier</a></td>
+            }
+        </tr>
+    </tbody>
+    }
+    </table>
+    </div>
+    </div>
+    </div>

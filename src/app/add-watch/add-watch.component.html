@@ -1,0 +1,46 @@
+<div class="container">
+    <div>
+        <h2>Ajouter une Montre :</h2>
+    </div>
+    <form>
+        <div hidden class="col-2">
+            <label>ID </label>
+            <input type="number" [(ngModel)]="newWatch.idMontre" name="idMontre" class="form-control">
+        </div>
+        <div class="col-4">
+            <label>Marque</label>
+            <input type="text" [(ngModel)]="newWatch.marque" name="marque" class="form-control">
+        </div>
+        <div class="col-4">
+            <label>Modèle</label>
+            <input type="text" [(ngModel)]="newWatch.modele" name="modele" class="form-control">
+        </div>
+        <div class="col-4">
+            <label>Diamètre</label>
+            <input type="number" [(ngModel)]="newWatch.diametre" name="diametre" class="form-control">
+        </div>
+        <div class="col-4">
+            <label>Prix</label>
+            <input type="number" [(ngModel)]="newWatch.prix" name="prix" class="form-control">
+        </div>
+        <div class="col-4">
+            <label>Date Fabrication</label>
+            <input type="date" [(ngModel)]="newWatch.datefabrication" name="datefabrication" class="form-control">
+        </div>
+        <div class="col-4">
+            <label>Mouvement</label>
+            <input type="text" [(ngModel)]="newWatch.mouvement" name="mouvement" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Client</label>
+            <select class="form-control form-control-lg" id="newIdCli" name="newIdCli" [(ngModel)]="newIdCli">
+                @for(cli of clients; track cli.idClient){
+                <option [value]="cli.idClient"> {{cli.nomCli}} </option>
+                }
+            </select>
+        </div>
+        <div class="mt-2">
+            <button type="submit" (click)="addMontre()" class="btn btn-success">Ajouter</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,67 @@
+<div class="container">
+
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+            <label>Marque en tapant</label>
+            <input #nom [(ngModel)]="searchTerm" name="searchTerm" class="form-control">
+        </div>
+    </form>
+        
+
+    <!--<form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+            <label>Marque en tapant</label>
+            <input class="form-control" #searchTerm (keyup)="onKeyUp(searchTerm.value)">
+        </div>
+    </form>-->
+
+    <!--<form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2 mt-2 ">
+            <label>Marque</label>
+            <input type="text" class="form-control" [(ngModel)]="marque" name="marque" class="form-control">
+            <button type="submit" (click)="rechercherMonts()" class="btn btn-primary mb-2 ml-2">Rechercher</button>
+        </div>
+    </form>-->
+
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Indice</th>
+                    <th>Id</th>
+                    <th>Marque</th>
+                    <th>Modèle</th>
+                    <th>Prix</th>
+                    <th>Diamètre</th>
+                    <th>Date de fabrication</th>
+                    <th>Mouvement</th>
+                    <th>Client</th>
+                </tr>
+                @for (watch of watches | searchFilter:searchTerm; track watch.idMontre;let indice=$index;let nbr=$count)
+                {
+                <tbody>
+                    <tr>
+                        <td>{{indice}}</td>
+                        <td>{{watch.idMontre}}</td>
+                        <td>{{watch.marque}}</td>
+                        <td>{{watch.modele}}</td>
+                        <td>{{watch.prix}}</td>
+                        <td>{{watch.diametre}}</td>
+                        <td>{{watch.datefabrication | date:'dd/MM/yyyy'}}</td>
+                        <td>{{watch.mouvement}}</td>
+                        @if(watch.client){
+                        <td>{{watch.client.nomCli}}</td>
+                        }
+                        @else {
+                        <td>PAS DE CLIENT</td>
+                        }
+                        <!--<td><a class="btn btn-danger" (click)="supprimerMontre(watch)">Supprimer</a></td>
+            <td><a class="btn btn-success" [routerLink]="['/update-watch',watch.idMontre]">Modifier</a></td>-->
+                    </tr>
+                </tbody>
+                }
+            </table>
+        </div>
+    </div>
+</div>
